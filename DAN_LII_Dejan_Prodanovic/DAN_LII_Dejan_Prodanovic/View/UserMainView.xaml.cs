@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAN_LII_Dejan_Prodanovic.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace DAN_LII_Dejan_Prodanovic.View
         public UserMainView()
         {
             InitializeComponent();
+        }
+        public UserMainView(string listType)
+        {
+            InitializeComponent();
+            DataContext = new UserMainViewModel(this, listType);
         }
     }
 }

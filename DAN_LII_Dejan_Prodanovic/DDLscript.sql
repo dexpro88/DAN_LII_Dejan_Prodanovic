@@ -1,8 +1,8 @@
 --we create database  
-CREATE DATABASE MyCakesDb;
+CREATE DATABASE MyCakes;
 GO
 
-use MyCakesDb;
+use MyCakes;
 
 GO
 
@@ -16,7 +16,8 @@ DROP TABLE IF EXISTS tblUserCake;
     CakeID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
     CakeName varchar(50),
 	CakeType varchar(10),
-	PurchasePrice decimal
+	PurchasePrice decimal,
+	SellPrice decimal
 	 
 );
 
@@ -46,10 +47,17 @@ DROP TABLE IF EXISTS tblUserCake;
 
  
  
-INSERT INTO tblCake values('Ljubavno gnezdo','o',10);
-INSERT INTO tblCake values('Lincer','o',15);
-INSERT INTO tblCake values('Cheese cake','o',10);
-INSERT INTO tblCake values('Doboš','d',20);
-INSERT INTO tblCake values('Bomba','d',22);
-INSERT INTO tblCake values('Kinder','d',17);
+INSERT INTO tblCake(CakeName,CakeType,PurchasePrice) 
+values('Ljubavno gnezdo','o',1000);
+INSERT INTO tblCake(CakeName,CakeType,PurchasePrice)
+ values('Lincer','o',2000);
+INSERT INTO tblCake (CakeName,CakeType,PurchasePrice)
+values('Cheese cake','o',1200);
+INSERT INTO tblCake(CakeName,CakeType,PurchasePrice)
+ values('Doboš','d',2500);
+INSERT INTO tblCake(CakeName,CakeType,PurchasePrice) 
+values('Bomba','d',800);
+INSERT INTO tblCake(CakeName,CakeType,PurchasePrice)
+ values('Kinder','d',1100);
+ 
  

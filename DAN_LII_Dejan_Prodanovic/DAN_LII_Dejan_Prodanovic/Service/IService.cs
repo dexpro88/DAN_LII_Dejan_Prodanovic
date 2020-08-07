@@ -11,5 +11,8 @@ namespace DAN_LII_Dejan_Prodanovic.Service
     {
         tblUser AddUser(tblUser user);
         tblUser GetUserByUserName(string username);
+        tblUser GetUserByUserNameAndPassword(string username, string password);
+        List<tblCake> GetChildrenCakes();
+        List<tblCake> GetAdultsCakes();
     }
 }

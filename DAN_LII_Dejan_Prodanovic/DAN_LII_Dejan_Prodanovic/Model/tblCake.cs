@@ -24,6 +24,7 @@ namespace DAN_LII_Dejan_Prodanovic.Model
         public string CakeName { get; set; }
         public string CakeType { get; set; }
         public Nullable<decimal> PurchasePrice { get; set; }
+        public Nullable<decimal> SellPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUserCake> tblUserCakes { get; set; }

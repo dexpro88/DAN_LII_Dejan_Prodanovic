@@ -13,7 +13,7 @@ namespace DAN_LII_Dejan_Prodanovic.Service
         {
             try
             {
-                using (MyCakesDbEntities context = new MyCakesDbEntities())
+                using (MyCakesEntities context = new MyCakesEntities())
                 {
 
 
@@ -36,7 +36,7 @@ namespace DAN_LII_Dejan_Prodanovic.Service
         {
             try
             {
-                using (MyCakesDbEntities context = new MyCakesDbEntities())
+                using (MyCakesEntities context = new MyCakesEntities())
                 {
 
                     tblUser newUser = new tblUser();
@@ -52,6 +52,69 @@ namespace DAN_LII_Dejan_Prodanovic.Service
                     return newUser;
 
 
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblUser GetUserByUserNameAndPassword(string username, string password)
+        {
+            try
+            {
+                using (MyCakesEntities context = new MyCakesEntities())
+                {
+
+
+                    tblUser user = (from x in context.tblUsers
+                                    where x.Username.Equals(username)
+                                    && x.UserPassword.Equals(password)
+                                    select x).First();
+
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblCake> GetChildrenCakes()
+        {
+            try
+            {
+                using (MyCakesEntities context = new MyCakesEntities())
+                {
+                    List<tblCake> list = new List<tblCake>();
+                    list = (from x in context.tblCakes
+                            where x.CakeType.Equals("d")
+                            select x).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblCake> GetAdultsCakes()
+        {
+            try
+            {
+                using (MyCakesEntities context = new MyCakesEntities())
+                {
+                    List<tblCake> list = new List<tblCake>();
+                    list = (from x in context.tblCakes
+                            where x.CakeType.Equals("o")
+                            select x).ToList();
+                    return list;
                 }
             }
             catch (Exception ex)

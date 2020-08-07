@@ -1,5 +1,8 @@
 ﻿using DAN_LII_Dejan_Prodanovic.Command;
+using DAN_LII_Dejan_Prodanovic.InputDialog;
+using DAN_LII_Dejan_Prodanovic.Model;
 using DAN_LII_Dejan_Prodanovic.Service;
+using DAN_LII_Dejan_Prodanovic.Utility;
 using DAN_LII_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
@@ -77,51 +80,53 @@ namespace DAN_LII_Dejan_Prodanovic.ViewModel
 
             string password = (obj as PasswordBox).Password;
 
+            string encryptedString = EncryptionHelper.Encrypt(password);
+
+            tblUser user = service.GetUserByUserNameAndPassword(UserName, encryptedString);
+            if (user != null)
+            {
 
 
-            //if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(password))
-            //{
-            //    MessageBox.Show("Wrong user name or password");
-            //    return;
-            //}
-            //if (UserName.Equals("WPFMaster") &&
-            //    password.Equals("WPFAccess"))
-            //{
-            //    PredifinedAccount predifinedAccount = new PredifinedAccount();
-            //    view.Close();
-            //    predifinedAccount.Show();
-            //    return;
-            //}
+               
 
-            //string encryptedString = EncryptionHelper.Encrypt(password);
+                
+                    InputDialogSample inputDialog = new InputDialogSample("Enter children or adults to choose cake list:" +
+                        "", "");
+                    if (inputDialog.ShowDialog() == true)
+                    {
+                        if (inputDialog.Answer.ToLower().Equals("children"))
+                        {
+                            UserMainView mainView = new UserMainView("children");
+                            mainView.Show();
+                            view.Close();
+                            return;
+                        }
+                        else if (inputDialog.Answer.ToLower().Equals("adults"))
+                        {
 
-            //tblUser user = userService.GetUserByUserNameAndPassword(UserName, encryptedString);
-            //if (user != null)
-            //{
-            //    tblAdmin admin = adminService.GetAdminByUserId(user.UserID);
 
-            //    if (admin != null)
-            //    {
-            //        AdminMainView adminMainView = new AdminMainView();
-            //        adminMainView.Show();
-            //        view.Close();
-            //    }
+                            UserMainView mainView = new UserMainView("adults");
+                            mainView.Show();
+                            view.Close();
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Wrong input");
+                        }
 
-            //    tblManager manager = managerService.GetManagerByUserId(user.UserID);
+                    }
+           
+              
+                
+               
+            }
 
-            //    if (manager != null)
-            //    {
-            //        ManagerMainView managerMainView = new ManagerMainView();
-            //        managerMainView.Show();
-            //        view.Close();
-            //    }
-            //}
-            
-            //else
-            //{
-            //    MessageBox.Show("Wrong username or password");
+            else
+            {
+                MessageBox.Show("Wrong username or password");
 
-            //}
+            }
 
 
         }

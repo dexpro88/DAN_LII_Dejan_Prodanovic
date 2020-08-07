@@ -13,10 +13,10 @@ namespace DAN_LII_Dejan_Prodanovic.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MyCakesDbEntities : DbContext
+    public partial class MyCakesEntities : DbContext
     {
-        public MyCakesDbEntities()
-            : base("name=MyCakesDbEntities")
+        public MyCakesEntities()
+            : base("name=MyCakesEntities")
         {
         }
     

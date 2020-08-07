@@ -69,9 +69,10 @@ namespace DAN_LII_Dejan_Prodanovic.ViewModel
                     return;
                 }
 
-                if (IsTelephoneNumberValid(User.TelephoneNumber))
+                if (!IsTelephoneNumberValid(User.TelephoneNumber))
                 {
                     MessageBox.Show("Telephone number is not valid");
+                    return;
                 }
               
                 var passwordBox = parameter as PasswordBox;
@@ -83,6 +84,7 @@ namespace DAN_LII_Dejan_Prodanovic.ViewModel
                 service.AddUser(User);
                 MessageBox.Show("You successfully registered.");
                 LoginView loginView = new LoginView();
+                loginView.Show();
                 view.Close();
 
 

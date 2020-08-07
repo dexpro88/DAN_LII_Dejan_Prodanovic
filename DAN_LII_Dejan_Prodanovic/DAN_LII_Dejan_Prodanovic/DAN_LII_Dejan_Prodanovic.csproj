@@ -65,35 +65,39 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Model\CakeDataBaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CakeDataBaseModel.Context.tt</DependentUpon>
+    <Compile Include="InputDialog\InputDialogSample.xaml.cs">
+      <DependentUpon>InputDialogSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CakeDataBaseModel.cs">
+    <Compile Include="Model\MyCakesModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CakeDataBaseModel.tt</DependentUpon>
+      <DependentUpon>MyCakesModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\CakeDataBaseModel.Designer.cs">
+    <Compile Include="Model\MyCakesModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CakeDataBaseModel.edmx</DependentUpon>
+      <DependentUpon>MyCakesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyCakesModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyCakesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\tblCake.cs">
-      <DependentUpon>CakeDataBaseModel.tt</DependentUpon>
+      <DependentUpon>MyCakesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tblUser.cs">
-      <DependentUpon>CakeDataBaseModel.tt</DependentUpon>
+      <DependentUpon>MyCakesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tblUserCake.cs">
-      <DependentUpon>CakeDataBaseModel.tt</DependentUpon>
+      <DependentUpon>MyCakesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Service\IService.cs" />
     <Compile Include="Service\ServiceClass.cs" />
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\UserMainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -104,6 +108,10 @@
     <Compile Include="View\UserMainView.xaml.cs">
       <DependentUpon>UserMainView.xaml</DependentUpon>
     </Compile>
+    <Page Include="InputDialog\InputDialogSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,12 +155,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\CakeDataBaseModel.edmx">
+    <EntityDeploy Include="Model\MyCakesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CakeDataBaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MyCakesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\CakeDataBaseModel.edmx.diagram">
-      <DependentUpon>CakeDataBaseModel.edmx</DependentUpon>
+    <None Include="Model\MyCakesModel.edmx.diagram">
+      <DependentUpon>MyCakesModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -164,19 +172,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\CakeDataBaseModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CakeDataBaseModel.edmx</DependentUpon>
-      <LastGenOutput>CakeDataBaseModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\CakeDataBaseModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CakeDataBaseModel.edmx</DependentUpon>
-      <LastGenOutput>CakeDataBaseModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Model\MyCakesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyCakesModel.edmx</DependentUpon>
+      <LastGenOutput>MyCakesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MyCakesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyCakesModel.edmx</DependentUpon>
+      <LastGenOutput>MyCakesModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
