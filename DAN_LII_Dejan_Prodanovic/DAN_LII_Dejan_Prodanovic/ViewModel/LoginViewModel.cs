@@ -96,7 +96,7 @@ namespace DAN_LII_Dejan_Prodanovic.ViewModel
                     {
                         if (inputDialog.Answer.ToLower().Equals("children"))
                         {
-                            UserMainView mainView = new UserMainView("children");
+                            UserMainView mainView = new UserMainView("children", user);
                             mainView.Show();
                             view.Close();
                             return;
@@ -105,7 +105,7 @@ namespace DAN_LII_Dejan_Prodanovic.ViewModel
                         {
 
 
-                            UserMainView mainView = new UserMainView("adults");
+                            UserMainView mainView = new UserMainView("adults",user);
                             mainView.Show();
                             view.Close();
                             return;

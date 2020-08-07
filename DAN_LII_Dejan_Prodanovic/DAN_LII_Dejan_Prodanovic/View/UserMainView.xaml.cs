@@ -1,4 +1,5 @@
-﻿using DAN_LII_Dejan_Prodanovic.ViewModel;
+﻿using DAN_LII_Dejan_Prodanovic.Model;
+using DAN_LII_Dejan_Prodanovic.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,10 @@ namespace DAN_LII_Dejan_Prodanovic.View
         {
             InitializeComponent();
         }
-        public UserMainView(string listType)
+        public UserMainView(string listType,tblUser user)
         {
             InitializeComponent();
-            DataContext = new UserMainViewModel(this, listType);
+            DataContext = new UserMainViewModel(this, listType,user);
         }
     }
 }

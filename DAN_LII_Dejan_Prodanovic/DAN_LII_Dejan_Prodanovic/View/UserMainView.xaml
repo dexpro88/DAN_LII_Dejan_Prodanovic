@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="UserMainView"
         WindowStartupLocation="CenterScreen"
-        Height="400"
-        Width="600"
+        Height="700"
+        Width="500"
         Background="#2e3137">
     <Window.Resources>
         <Style TargetType="Button">
@@ -30,7 +30,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="300" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
@@ -52,7 +52,7 @@
         <DataGrid Grid.Row="1"
                   Name="DataGridResults"
                   ItemsSource="{Binding CakeList, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelectedPizza,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedCake,UpdateSourceTrigger=PropertyChanged}"
                   IsReadOnly="True"
                   HeadersVisibility="Column"
                   AutoGenerateColumns="False"
@@ -61,7 +61,7 @@
                   Foreground="Black"
                   FontWeight="Bold">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pizza type"
+                <DataGridTextColumn Header="Name"
                                     Binding="{Binding CakeName}" />
                 <DataGridTextColumn Header="Price"
                                     Binding="{Binding SellPrice}" />
@@ -79,6 +79,38 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+         <StackPanel    Grid.Row="2" Orientation="Vertical" Margin="10" >
+            <Label Foreground="White">Ingredients you don't want in your cake</Label>
+            <CheckBox Width="130"
+                      Name="cb1"
+                      Foreground="White"
+                      Content="cinnamon" Command="{Binding Path=ChooseForLife}"
+                    CommandParameter="{Binding ElementName=cbForLife, Path=IsChecked}">
+            </CheckBox>
+              <CheckBox Width="130" Name="cb2" Content="lemon" 
+                        Command="{Binding Path=ChooseForLife}"
+                        Foreground="White"
+                        CommandParameter="{Binding ElementName=cbForLife, Path=IsChecked}">
+            </CheckBox>
+            <CheckBox Width="130"
+                      Name="cb3"
+                      Content="coffee"
+                      Foreground="White"
+                      Command="{Binding Path=ChooseForLife}"
+                      CommandParameter="{Binding ElementName=cbForLife, Path=IsChecked}"></CheckBox>
+            <CheckBox Width="130"
+                      Name="cb4"
+                      Content="chocolate"
+                      Foreground="White"
+                      Command="{Binding Path=ChooseForLife}"
+                      CommandParameter="{Binding ElementName=cbForLife, Path=IsChecked}"></CheckBox>
+            <CheckBox Width="130"
+                      Name="cb5"
+                      Content="maple syrup"
+                      Foreground="White"
+                      Command="{Binding Path=ChooseForLife}"
+                      CommandParameter="{Binding ElementName=cbForLife, Path=IsChecked}"></CheckBox>
+        </StackPanel>
         <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
@@ -97,6 +129,7 @@
                        Foreground="White"
                        Text="Your order is waiting for approval."></TextBlock>
         </StackPanel>
+        
         <StackPanel Grid.Row="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
