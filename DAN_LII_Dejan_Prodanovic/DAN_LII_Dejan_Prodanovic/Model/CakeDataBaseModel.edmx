@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyCakesDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCake">
+          <Key>
+            <PropertyRef Name="CakeID" />
+          </Key>
+          <Property Name="CakeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CakeName" Type="varchar" MaxLength="50" />
+          <Property Name="CakeType" Type="varchar" MaxLength="10" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="50" />
+          <Property Name="UserAddress" Type="varchar" MaxLength="50" />
+          <Property Name="TelephoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="50" />
+          <Property Name="NumberOfOrders" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUserCake">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="CakeID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="CakeID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="DateAndTimeOfOrder" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__tblUserCa__CakeI__3C69FB99">
+          <End Role="tblCake" Type="Self.tblCake" Multiplicity="1" />
+          <End Role="tblUserCake" Type="Self.tblUserCake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCake">
+              <PropertyRef Name="CakeID" />
+            </Principal>
+            <Dependent Role="tblUserCake">
+              <PropertyRef Name="CakeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserCa__UserI__3B75D760">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblUserCake" Type="Self.tblUserCake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserCake">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyCakesDbModelStoreContainer">
+          <EntitySet Name="tblCake" EntityType="Self.tblCake" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserCake" EntityType="Self.tblUserCake" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblUserCa__CakeI__3C69FB99" Association="Self.FK__tblUserCa__CakeI__3C69FB99">
+            <End Role="tblCake" EntitySet="tblCake" />
+            <End Role="tblUserCake" EntitySet="tblUserCake" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserCa__UserI__3B75D760" Association="Self.FK__tblUserCa__UserI__3B75D760">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserCake" EntitySet="tblUserCake" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyCakesDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCake">
+          <Key>
+            <PropertyRef Name="CakeID" />
+          </Key>
+          <Property Name="CakeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CakeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CakeType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="tblUserCakes" Relationship="Self.FK__tblUserCa__CakeI__3C69FB99" FromRole="tblCake" ToRole="tblUserCake" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfOrders" Type="Int32" />
+          <NavigationProperty Name="tblUserCakes" Relationship="Self.FK__tblUserCa__UserI__3B75D760" FromRole="tblUser" ToRole="tblUserCake" />
+        </EntityType>
+        <EntityType Name="tblUserCake">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="CakeID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="CakeID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="DateAndTimeOfOrder" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCake" Relationship="Self.FK__tblUserCa__CakeI__3C69FB99" FromRole="tblUserCake" ToRole="tblCake" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblUserCa__UserI__3B75D760" FromRole="tblUserCake" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK__tblUserCa__CakeI__3C69FB99">
+          <End Role="tblCake" Type="Self.tblCake" Multiplicity="1" />
+          <End Role="tblUserCake" Type="Self.tblUserCake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCake">
+              <PropertyRef Name="CakeID" />
+            </Principal>
+            <Dependent Role="tblUserCake">
+              <PropertyRef Name="CakeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserCa__UserI__3B75D760">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblUserCake" Type="Self.tblUserCake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserCake">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyCakesDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCakes" EntityType="Self.tblCake" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblUserCakes" EntityType="Self.tblUserCake" />
+          <AssociationSet Name="FK__tblUserCa__CakeI__3C69FB99" Association="Self.FK__tblUserCa__CakeI__3C69FB99">
+            <End Role="tblCake" EntitySet="tblCakes" />
+            <End Role="tblUserCake" EntitySet="tblUserCakes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserCa__UserI__3B75D760" Association="Self.FK__tblUserCa__UserI__3B75D760">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblUserCake" EntitySet="tblUserCakes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyCakesDbModelStoreContainer" CdmEntityContainer="MyCakesDbEntities">
+          <EntitySetMapping Name="tblCakes">
+            <EntityTypeMapping TypeName="MyCakesDbModel.tblCake">
+              <MappingFragment StoreEntitySet="tblCake">
+                <ScalarProperty Name="CakeID" ColumnName="CakeID" />
+                <ScalarProperty Name="CakeName" ColumnName="CakeName" />
+                <ScalarProperty Name="CakeType" ColumnName="CakeType" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="MyCakesDbModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="NumberOfOrders" ColumnName="NumberOfOrders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserCakes">
+            <EntityTypeMapping TypeName="MyCakesDbModel.tblUserCake">
+              <MappingFragment StoreEntitySet="tblUserCake">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CakeID" ColumnName="CakeID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DateAndTimeOfOrder" ColumnName="DateAndTimeOfOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
